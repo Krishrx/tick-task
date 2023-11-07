@@ -1,10 +1,10 @@
-import { Radio, Typography } from '@material-tailwind/react';
+import { Button, Radio, Typography } from '@material-tailwind/react';
 import { useState } from 'react'
 
 function TaskFields() {
     const [taskFields, setTaskFields] = useState({
         taskField: '',
-        priority:'High'
+        priority:''
     });
 
 
@@ -13,13 +13,29 @@ function TaskFields() {
         setTaskFields({...taskFields,[name]: value });
         
     }
+    
+    const handleTaskAdd = (e) => {
+        e.preventDefault();
+        if(!(validateTaskField(taskFields.taskField))){
+          alert('Enter a task')
+          return;
+        }
+        alert(`Task: ${taskFields.taskField}, Priority: ${taskFields.priority}`);
+        setTaskFields({...taskFields,
+          taskField: '',
+          priority: '',
+        });
+    }
+    const validateTaskField = (field) => {
+        if(field.trim().length===0) return false;
+        return true;
+    }
 
   return (
-    <section className="flex flex-col justify-center items-center px-2 py-4 w-full space-y-4">
-
+    <section className="px-2 py-4 w-full space-y-4">
+          <form className='flex flex-col justify-center items-center ' onSubmit={handleTaskAdd}>
           {/* Task Field */}
-          <input type="text" name='taskField' id='taskField'
-          className='bg-purple-50 w-8/12 rounded-md border-2 border-primary focus:outline-none focus:border-4 px-4 py-2 md:w-4/12' onChange={handleChange} placeholder='Learn Coding @ 7pm'/>
+          <input type="text" name='taskField' id='taskField' value={taskFields.taskField} className='bg-purple-50 w-8/12 rounded-md border-2 border-primary focus:outline-none focus:border-4 px-4 py-2 md:w-4/12' onChange={handleChange} placeholder='Learn Coding @ 7pm' autoComplete="off"/>
           
           {/* Priority section */}
           <div className='w-8/12 flex justify-evenly items-center md:w-4/12'>
@@ -38,6 +54,10 @@ function TaskFields() {
             </div>
           </div>
           
+          <div className='px-2 py-4'>
+            <Button type='submit' ripple={true} color="deep-purple" variant="filled">Add</Button>
+          </div>
+          </form>
     </section>
   )
 }
