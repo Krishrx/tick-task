@@ -2,7 +2,7 @@ import { Button, Radio, Typography } from '@material-tailwind/react';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { taskAdd } from '../redux/taskSlice';
-import { handleToast,clearToast } from '../redux/toastSlice';
+import { handleToast, clearToast } from '../redux/toastSlice';
 
 function TaskFields() {
     const [taskFields, setTaskFields] = useState({
@@ -62,7 +62,7 @@ function TaskFields() {
           <input type="text" name='taskField' id='taskField' value={taskFields.taskField} className='bg-purple-50 w-8/12 rounded-md border-2 border-primary focus:outline-none focus:border-4 px-4 py-2 md:w-4/12' onChange={handleChange} placeholder='Learn Coding @ 7pm' autoComplete="off"/>
           
           {/* Priority section */}
-          <div className='w-8/12 flex justify-evenly items-center md:w-4/12'>
+          <div className='w-8/12 flex justify-evenly items-center md:w-4/12 space-y-4'>
               <h1 className='font-semibold'>Priority</h1>
               
             <div className='flex flex-col md:flex-row'>           

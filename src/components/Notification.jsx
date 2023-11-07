@@ -26,7 +26,7 @@ const successToast = (message) => {
     </svg>
     <span className="sr-only">Check icon</span>
 </div>
-      <div className="ml-3 text-sm font-normal lg:text-lg">{message}</div>
+      <div className="ml-3 text-sm font-normal lg:text-md">{message}</div>
 
 </div>
   )
@@ -41,7 +41,7 @@ const invalidToast = (message) => {
     </svg>
     <span className="sr-only">Warning icon</span>
 </div>
-      <div className="ml-3 text-sm font-normal lg:text-lg">{message}</div>
+      <div className="ml-3 text-sm font-normal lg:text-md">{message}</div>
 </div>
   )
 }
@@ -56,7 +56,7 @@ const deleteToast = (message) => {
     </svg>
     <span className="sr-only">Error icon</span>
 </div>
-      <div className="ml-3 text-sm font-normal lg:text-lg">{message}</div>
+      <div className="ml-3 text-sm font-normal lg:text-md">{message}</div>
 </div>
   )
 }
