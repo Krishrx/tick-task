@@ -2,6 +2,7 @@ import { Button, Radio, Typography } from '@material-tailwind/react';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { taskAdd } from '../redux/taskSlice';
+import { handleToast,clearToast } from '../redux/toastSlice';
 
 function TaskFields() {
     const [taskFields, setTaskFields] = useState({
@@ -20,8 +21,8 @@ function TaskFields() {
     const handleTaskAdd = (e) => {
       e.preventDefault();
       const { taskField, priority } = taskFields;
-      if(!(validateTaskField(taskField))){
-          alert('Enter a task')
+      if (!(validateTaskField(taskField))) {
+          showAndHideToast('invalid',"Oops!! task can't be empty!");
           return;
       }
         const data = {
@@ -34,11 +35,24 @@ function TaskFields() {
           taskField: '',
           priority: '',
         });
+        
+      showAndHideToast('success',"Task added Successfully!")
     }
     
     const validateTaskField = (field) => {
         if(field.trim().length===0) return false;
         return true;
+    }
+    
+    const showAndHideToast = (typeOfToast,messageOnToast)=>{
+        const toastData = {
+          typeOfToast,
+          messageOnToast
+        }
+          dispatch(handleToast(toastData))
+          setTimeout(() => {
+            dispatch(clearToast());
+          }, 3000);
     }
 
   return (
