@@ -1,31 +1,41 @@
 import { Button, Radio, Typography } from '@material-tailwind/react';
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { taskAdd } from '../redux/taskSlice';
 
 function TaskFields() {
     const [taskFields, setTaskFields] = useState({
         taskField: '',
         priority:''
     });
+  
+    const dispatch = useDispatch();
 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setTaskFields({...taskFields,[name]: value });
-        
     }
     
     const handleTaskAdd = (e) => {
-        e.preventDefault();
-        if(!(validateTaskField(taskFields.taskField))){
+      e.preventDefault();
+      const { taskField, priority } = taskFields;
+      if(!(validateTaskField(taskField))){
           alert('Enter a task')
           return;
+      }
+        const data = {
+          taskField,
+          priority:priority===''?'High':priority
         }
-        alert(`Task: ${taskFields.taskField}, Priority: ${taskFields.priority}`);
+        dispatch(taskAdd(data));
+        
         setTaskFields({...taskFields,
           taskField: '',
           priority: '',
         });
     }
+    
     const validateTaskField = (field) => {
         if(field.trim().length===0) return false;
         return true;
