@@ -1,6 +1,8 @@
+import React from "react";
 
 // eslint-disable-next-line react/prop-types
-function Notification({showToast,typeOfToast,messageOnToast}) {
+function Notification({ showToast, typeOfToast, messageOnToast }) {
+  console.log('from notify');
   return (
     <section className="flex justify-center items-center px-2 py-4">
       {showToast ? <Toast type={typeOfToast} message={messageOnToast} />:notVisible}
@@ -61,4 +63,4 @@ const deleteToast = (message) => {
   )
 }
 
-export default Notification
+export default React.memo(Notification);
