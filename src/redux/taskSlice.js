@@ -75,10 +75,18 @@ export const taskSlice = createSlice({
             state.editTaskFields.priority = '';
             state.editTaskFields.completed = false;
             state.onEdit = false;
+        },
+        deleteTask: (state, action) => {
+            const id = action.payload.id;
+            state.tasks = state.tasks.filter(task => task.id !== id);
+            sortTasks(state.tasks);
+            localStorage.setItem("tickTask", JSON.stringify(state.tasks));
+
+            state.onEdit = false;
         }
     }
 })
 
-export const { taskAdd,toggleTask,setEditMode,editTask,getBack } = taskSlice.actions;
+export const { taskAdd, toggleTask, setEditMode, editTask, getBack, deleteTask } = taskSlice.actions;
 
 export default taskSlice.reducer

@@ -2,7 +2,8 @@ import {Pencil, Trash2} from 'lucide-react'
 import React,{useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, Collapse, Typography } from "@material-tailwind/react";
-import { toggleTask,setEditMode } from '../redux/taskSlice';
+import { toggleTask, setEditMode, deleteTask } from '../redux/taskSlice';
+import { handleToast, clearToast } from '../redux/toastSlice';
 import {ChevronDown, ChevronUp} from 'lucide-react'
 function TodoTask() {
     //const [toDoArray, setToDoArray] = useState([]);
@@ -14,6 +15,16 @@ function TodoTask() {
  
     const toggleOpen = () => setOpen((cur) => !cur);
 
+    const showAndHideToast = (typeOfToast,messageOnToast)=>{
+        const toastData = {
+          typeOfToast,
+          messageOnToast
+        }
+          dispatch(handleToast(toastData))
+          setTimeout(() => {
+            dispatch(clearToast());
+          }, 3000);
+    }
 
     if (!toDoArray) return;
     //console.log('toDoArray');
@@ -22,6 +33,11 @@ function TodoTask() {
     const checkColor = priority === 'High' ? 'red' : priority === 'Low' ? 'green' : 'amber';
     const handleCheckedTask = () => {
         dispatch(toggleTask({ id }));
+    }
+    
+    const handleTaskDelete = ()=>{
+        dispatch(deleteTask({ id }));
+        showAndHideToast('delete', 'Task removed!');
     }
 
     const taskComponent = (
@@ -38,7 +54,7 @@ function TodoTask() {
             </div>
             <div className="self-end justify-self-end flex justify-between items-center gap-3 cursor-pointer">
                 <Pencil onClick={()=>dispatch(setEditMode({ id, taskField, priority, completed}))} size={18} />
-                <Trash2 size={18} />
+                <Trash2 onClick={handleTaskDelete} size={18} />
             </div>
         </div>
     );

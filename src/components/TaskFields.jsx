@@ -27,8 +27,7 @@ function TaskFields() {
         setTaskFields({...taskFields,[name]: value });
     }
     
-    const handleTaskAdd = (e) => {
-      e.preventDefault();
+    const handleTaskAdd = () => {
       const { taskField, priority } = taskFields;
       if (!(validateTaskField(taskField))) {
           showAndHideToast('invalid',"Oops!! task can't be empty!");
@@ -50,8 +49,7 @@ function TaskFields() {
       showAndHideToast('success',"Task added Successfully!")
     }
     
-    const handleTaskEdit = (e)=>{
-      e.preventDefault();
+    const handleTaskEdit = ()=>{
       const { taskField, priority } = taskFields;
       if (!(validateTaskField(taskField))) {
           showAndHideToast('invalid',"Oops!! task can't be empty!");
@@ -79,6 +77,16 @@ function TaskFields() {
       });
     }
     
+    const handleSubmit = (e)=>{
+      e.preventDefault();
+      if (onEdit) {
+        handleTaskEdit();
+      }
+      else {
+         handleTaskAdd();
+      }
+    }
+    
     const validateTaskField = (field) => {
         if(field.trim().length===0) return false;
         return true;
@@ -97,7 +105,7 @@ function TaskFields() {
     //console.log('from task fields');
   return (
     <section className="px-2 py-4 w-full space-y-4">
-          <form className='flex flex-col justify-center items-center ' onSubmit={handleTaskAdd}>
+          <form className='flex flex-col justify-center items-center ' onSubmit={handleSubmit}>
           {/* Task Field */}
           <input type="text" name='taskField' id='taskField' value={taskFields.taskField} className='bg-purple-50 w-8/12 rounded-md border-2 border-secondary focus:outline-primary  px-4 py-2 md:w-4/12 shadow-sm' onChange={handleChange} placeholder='Learn Coding @ 7pm' autoComplete="off"/>
           
@@ -120,7 +128,7 @@ function TaskFields() {
           
           <div className='px-2 py-4'>
             {onEdit?(<div className='flex gap-4'>
-              <Button onClick={handleTaskEdit} type='button' ripple={true} color="deep-purple" variant="filled">Save</Button>
+              <Button type='submit' ripple={true} color="deep-purple" variant="filled">Save</Button>
               <Button onClick={handleCancel} type='button' ripple={true} color="blue-gray" variant="filled">Cancel</Button>
             </div>):(<Button type='submit' ripple={true} color="deep-purple" variant="filled">Add</Button>)}
           </div>
