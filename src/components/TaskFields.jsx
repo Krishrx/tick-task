@@ -1,7 +1,7 @@
 import { Button, Radio, Typography } from '@material-tailwind/react';
-import React,{ useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { taskAdd } from '../redux/taskSlice';
+import React,{ useState,useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { taskAdd,editTask,getBack } from '../redux/taskSlice';
 import { handleToast, clearToast } from '../redux/toastSlice';
 import { nanoid } from '@reduxjs/toolkit';
 
@@ -13,6 +13,14 @@ function TaskFields() {
   
     const dispatch = useDispatch();
 
+    const onEdit = useSelector((state)=>state.task.onEdit);
+    const editFields = useSelector((state)=>state.task.editTaskFields);
+    useEffect(() => {
+      if (onEdit) {
+        const { taskField, priority } = editFields;
+        setTaskFields({ taskField, priority });
+      }
+    }, [onEdit, editFields]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -40,6 +48,35 @@ function TaskFields() {
         });
         
       showAndHideToast('success',"Task added Successfully!")
+    }
+    
+    const handleTaskEdit = (e)=>{
+      e.preventDefault();
+      const { taskField, priority } = taskFields;
+      if (!(validateTaskField(taskField))) {
+          showAndHideToast('invalid',"Oops!! task can't be empty!");
+          return;
+      }
+      const data = {
+          taskField,
+          priority,
+        }
+        dispatch(editTask(data));
+        
+        setTaskFields({...taskFields,
+          taskField: '',
+          priority: '',
+        });
+        
+      showAndHideToast('success',"Task updated Successfully!")
+    }
+    
+    const handleCancel = ()=>{
+      dispatch(getBack());
+      setTaskFields({...taskFields,
+          taskField: '',
+          priority: '',
+      });
     }
     
     const validateTaskField = (field) => {
@@ -82,7 +119,10 @@ function TaskFields() {
           </div>
           
           <div className='px-2 py-4'>
-            <Button type='submit' ripple={true} color="deep-purple" variant="filled">Add</Button>
+            {onEdit?(<div className='flex gap-4'>
+              <Button onClick={handleTaskEdit} type='button' ripple={true} color="deep-purple" variant="filled">Save</Button>
+              <Button onClick={handleCancel} type='button' ripple={true} color="blue-gray" variant="filled">Cancel</Button>
+            </div>):(<Button type='submit' ripple={true} color="deep-purple" variant="filled">Add</Button>)}
           </div>
           </form>
     </section>

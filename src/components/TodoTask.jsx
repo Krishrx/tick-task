@@ -2,7 +2,7 @@ import {Pencil, Trash2} from 'lucide-react'
 import React,{useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, Collapse, Typography } from "@material-tailwind/react";
-import { toggleTask } from '../redux/taskSlice';
+import { toggleTask,setEditMode } from '../redux/taskSlice';
 import {ChevronDown, ChevronUp} from 'lucide-react'
 function TodoTask() {
     //const [toDoArray, setToDoArray] = useState([]);
@@ -37,7 +37,7 @@ function TodoTask() {
                 } color={checkColor} onChange={handleCheckedTask} checked={completed} className='cursor-pointer' />
             </div>
             <div className="self-end justify-self-end flex justify-between items-center gap-3 cursor-pointer">
-                <Pencil size={18} />
+                <Pencil onClick={()=>dispatch(setEditMode({ id, taskField, priority, completed}))} size={18} />
                 <Trash2 size={18} />
             </div>
         </div>
