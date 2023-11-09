@@ -4,16 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, Typography } from "@material-tailwind/react";
 import { toggleTask } from '../redux/taskSlice';
 function TodoTask() {
-    const [toDoArray, setToDoArray] = useState([]);
-    const taskCount = useSelector((state) => state.task.tasksCount);
+    //const [toDoArray, setToDoArray] = useState([]);
+    //const taskCount = useSelector((state) => state.task.tasksCount);
+    const toDoArray = useSelector((state) => state.task.tasks);
     const dispatch = useDispatch();
     useEffect(() => {
-        setToDoArray(JSON.parse(localStorage.getItem("tickTask")))
-    }, [taskCount])
+        
+    }, [toDoArray])
 
 
     if (!toDoArray) return;
-    //console.log('toDoArray');
+    console.log('toDoArray');
         const modifiedArr = toDoArray.map(({ id, taskField, priority , completed}) => {
             const color = priority === 'High' ? 'bg-red-100' : priority === 'Low' ? 'bg-green-100' : 'bg-amber-100';
             const checkColor = priority === 'High' ? 'red' : priority === 'Low' ? 'green' : 'amber';

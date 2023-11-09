@@ -3,30 +3,28 @@ import { sortTasks } from "../utils/sortTasks";
 export const taskSlice = createSlice({
     name: 'task',
     initialState: {
+        tasks: JSON.parse(localStorage.getItem("tickTask")) === null ? [] : JSON.parse(localStorage.getItem("tickTask")),
         tasksCount: JSON.parse(localStorage.getItem("tickTask")) === null ? 0 : JSON.parse(localStorage.getItem("tickTask")).length,
     },
     reducers: {
         taskAdd: (state, action) => {
            // const { id, taskField, priority, completed } = action.payload;
-            if (localStorage.getItem("tickTask") !== null) {
-                const taskArray = JSON.parse(localStorage.getItem("tickTask"));
-                taskArray.push(action.payload);
-                sortTasks(taskArray);
-                localStorage.setItem("tickTask", JSON.stringify(taskArray));
-                state.tasksCount = JSON.parse(localStorage.getItem("tickTask")).length;
+            if (state.tasksCount!==0) {
+                state.tasks.push(action.payload);
+                sortTasks(state.tasks);
+                localStorage.setItem("tickTask", JSON.stringify(state.tasks));
+                state.tasksCount = state.tasks.length;
             }
             else {
-                const taskArray = [];
-                taskArray.push(action.payload);
-                localStorage.setItem("tickTask", JSON.stringify(taskArray));
+                state.tasks.push(action.payload);
+                localStorage.setItem("tickTask", JSON.stringify(state.tasks));
                 state.tasksCount = 1;
             }
         },
         toggleTask: (state, action) => {
             const id = action.payload.id;
             //console.log(id);
-            const taskArray = JSON.parse(localStorage.getItem("tickTask"));
-            const updatedTasks = taskArray.map(task => {
+            state.tasks = state.tasks.map(task => {
                 if (task.id === id) {
                     return {
                         ...task,
@@ -35,7 +33,7 @@ export const taskSlice = createSlice({
                 }
                 return task;
             });
-            localStorage.setItem("tickTask", JSON.stringify(updatedTasks));
+            localStorage.setItem("tickTask", JSON.stringify(state.tasks));
         }
     }
 })
