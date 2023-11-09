@@ -2,7 +2,7 @@ import React from "react";
 
 // eslint-disable-next-line react/prop-types
 function Notification({ showToast, typeOfToast, messageOnToast }) {
-  console.log('from notify');
+  //console.log('from notify');
   return (
     <section className="flex justify-center items-center px-2 py-4">
       {showToast ? <Toast type={typeOfToast} message={messageOnToast} />:notVisible}

@@ -57,7 +57,7 @@ function TaskFields() {
             dispatch(clearToast());
           }, 3000);
     }
-    console.log('from task fields');
+    //console.log('from task fields');
   return (
     <section className="px-2 py-4 w-full space-y-4">
           <form className='flex flex-col justify-center items-center ' onSubmit={handleTaskAdd}>

@@ -1,22 +1,24 @@
 import {Pencil, Trash2} from 'lucide-react'
 import React,{useState,useEffect} from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, Typography } from "@material-tailwind/react";
+import { toggleTask } from '../redux/taskSlice';
 function TodoTask() {
     const [toDoArray, setToDoArray] = useState([]);
-    const taskCount = useSelector((state)=>state.task.tasksCount);
+    const taskCount = useSelector((state) => state.task.tasksCount);
+    const dispatch = useDispatch();
     useEffect(() => {
         setToDoArray(JSON.parse(localStorage.getItem("tickTask")))
     }, [taskCount])
 
 
     if (!toDoArray) return;
-    console.log('toDoArray');
+    //console.log('toDoArray');
         const modifiedArr = toDoArray.map(({ id, taskField, priority , completed}) => {
             const color = priority === 'High' ? 'bg-red-100' : priority === 'Low' ? 'bg-green-100' : 'bg-amber-100';
             const checkColor = priority === 'High' ? 'red' : priority === 'Low' ? 'green' : 'amber';
             const handleCheckedTask = () => {
-                console.log(id);
+                dispatch(toggleTask({id}))
             }
             return (
                 <div key={id} className={`w-full h-fit ${color} px-4 py-4 rounded-lg shadow-md flex justify-between items-center   cursor-pointer`}>
@@ -24,11 +26,11 @@ function TodoTask() {
                         <p className="hidden">{id}</p>
                         <Checkbox label={
                             <div>
-                            <Typography className='font-medium text-text'>
-                                {taskField}
-                            </Typography>
+                                <Typography className='font-medium text-text'>
+                                    {taskField}
+                                </Typography>
                             </div>
-                        } color={checkColor} onClick={handleCheckedTask} />
+                        } color={checkColor} onChange={handleCheckedTask} checked={completed} />
                     </div>
                     <div className="self-end justify-self-end flex justify-between items-center gap-2">
                         <Pencil size={18} />
