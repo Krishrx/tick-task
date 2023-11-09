@@ -62,7 +62,7 @@ function TaskFields() {
     <section className="px-2 py-4 w-full space-y-4">
           <form className='flex flex-col justify-center items-center ' onSubmit={handleTaskAdd}>
           {/* Task Field */}
-          <input type="text" name='taskField' id='taskField' value={taskFields.taskField} className='bg-purple-50 w-8/12 rounded-md border-2 border-primary focus:outline-none focus:border-4 px-4 py-2 md:w-4/12' onChange={handleChange} placeholder='Learn Coding @ 7pm' autoComplete="off"/>
+          <input type="text" name='taskField' id='taskField' value={taskFields.taskField} className='bg-purple-50 w-8/12 rounded-md border-2 border-secondary focus:outline-primary  px-4 py-2 md:w-4/12 shadow-sm' onChange={handleChange} placeholder='Learn Coding @ 7pm' autoComplete="off"/>
           
           {/* Priority section */}
           <div className='w-8/12 flex justify-evenly items-center md:w-4/12 space-y-4'>
