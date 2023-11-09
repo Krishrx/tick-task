@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { taskAdd,editTask,getBack } from '../redux/taskSlice';
 import { handleToast, clearToast } from '../redux/toastSlice';
 import { nanoid } from '@reduxjs/toolkit';
+import {Info} from 'lucide-react'
 
 function TaskFields() {
     const [taskFields, setTaskFields] = useState({
@@ -124,6 +125,10 @@ function TaskFields() {
                className="font-normal text-text">Low</Typography>}/>
 
             </div>
+          </div>
+          
+          <div className='w-8/12 px-4 py-2 md:w-4/12 '>
+            <Info className='text-accent cursor-pointer'/>
           </div>
           
           <div className='px-2 py-4'>
