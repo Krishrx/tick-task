@@ -1,6 +1,8 @@
+import React from "react";
 
 // eslint-disable-next-line react/prop-types
-function Notification({showToast,typeOfToast,messageOnToast}) {
+function Notification({ showToast, typeOfToast, messageOnToast }) {
+  //console.log('from notify');
   return (
     <section className="flex justify-center items-center px-2 py-4">
       {showToast ? <Toast type={typeOfToast} message={messageOnToast} />:notVisible}
@@ -26,14 +28,13 @@ const successToast = (message) => {
     </svg>
     <span className="sr-only">Check icon</span>
 </div>
-      <div className="ml-3 text-sm font-normal lg:text-lg">{message}</div>
+      <div className="ml-3 text-sm font-normal lg:text-md">{message}</div>
 
 </div>
   )
 }
 
 const invalidToast = (message) => {
-  // Oops!! task can't be empty!
   return (
     <div id="toast-warning" className="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
 <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
@@ -42,13 +43,12 @@ const invalidToast = (message) => {
     </svg>
     <span className="sr-only">Warning icon</span>
 </div>
-      <div className="ml-3 text-sm font-normal lg:text-lg">{message}</div>
+      <div className="ml-3 text-sm font-normal lg:text-md">{message}</div>
 </div>
   )
 }
 
 const deleteToast = (message) => {
-  //Task removed!
   return (
     <div id="toast-danger" className="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
 <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
@@ -57,9 +57,9 @@ const deleteToast = (message) => {
     </svg>
     <span className="sr-only">Error icon</span>
 </div>
-      <div className="ml-3 text-sm font-normal lg:text-lg">{message}</div>
+      <div className="ml-3 text-sm font-normal lg:text-md">{message}</div>
 </div>
   )
 }
 
-export default Notification
+export default React.memo(Notification);
