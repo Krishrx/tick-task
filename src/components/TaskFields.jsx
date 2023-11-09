@@ -3,6 +3,7 @@ import React,{ useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { taskAdd } from '../redux/taskSlice';
 import { handleToast, clearToast } from '../redux/toastSlice';
+import { nanoid } from '@reduxjs/toolkit';
 
 function TaskFields() {
     const [taskFields, setTaskFields] = useState({
@@ -25,9 +26,11 @@ function TaskFields() {
           showAndHideToast('invalid',"Oops!! task can't be empty!");
           return;
       }
-        const data = {
+      const data = {
+          id:nanoid(),
           taskField,
-          priority:priority===''?'High':priority
+          priority:priority===''?'High':priority,
+          completed:false
         }
         dispatch(taskAdd(data));
         
