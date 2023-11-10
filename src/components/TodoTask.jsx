@@ -42,12 +42,18 @@ function TodoTask() {
         if (!isOnEdit) {
             dispatch(setEditMode({ id, taskField, priority, completed }));
         }
+        else {
+            showAndHideToast('invalid',"Dude, You're on edit mode click save/cancel to continue!")
+        }
     }
     
     const handleTaskDelete = ()=>{
         if (!isOnEdit) {
             dispatch(deleteTask({ id }));
             showAndHideToast('delete', 'Task removed!');
+        }
+        else {
+            showAndHideToast('invalid',"Oops!!, Can't perform delete while on edit mode!")
         }
     }
 
@@ -64,8 +70,8 @@ function TodoTask() {
                 } color={checkColor} onChange={handleCheckedTask} checked={completed} className='cursor-pointer' />
             </div>
             <div className="self-end justify-self-end flex justify-between items-center gap-3 cursor-pointer">
-                <Pencil onClick={handleEditClick} size={18} style={{ pointerEvents: isOnEdit ? 'none' : 'auto', opacity: isOnEdit ? 0.5 : 1 }}  />
-                <Trash2 onClick={handleTaskDelete} size={18} style={{ pointerEvents: isOnEdit ? 'none' : 'auto', opacity: isOnEdit ? 0.5 : 1 }} />
+                <Pencil onClick={handleEditClick} size={18} style={{ opacity: isOnEdit ? 0.5 : 1 }}  />
+                <Trash2 onClick={handleTaskDelete} size={18} style={{ opacity: isOnEdit ? 0.5 : 1 }} />
             </div>
         </div>
     );
