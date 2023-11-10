@@ -9,6 +9,7 @@ function TodoTask() {
     //const [toDoArray, setToDoArray] = useState([]);
     //const taskCount = useSelector((state) => state.task.tasksCount);
     const toDoArray = useSelector((state) => state.task.tasks);
+    const isOnEdit = useSelector((state) => state.task.onEdit);
     const dispatch = useDispatch();
 
     const [open, setOpen] = useState(false);
@@ -29,15 +30,25 @@ function TodoTask() {
     if (!toDoArray) return;
     //console.log('toDoArray');
     const modifiedArr = toDoArray.reduce((acc, { id, taskField, priority, completed }) => {
+
     const color = priority === 'High' ? 'bg-red-100' : priority === 'Low' ? 'bg-green-100' : 'bg-amber-100';
     const checkColor = priority === 'High' ? 'red' : priority === 'Low' ? 'green' : 'amber';
+    
     const handleCheckedTask = () => {
         dispatch(toggleTask({ id }));
     }
     
+    const handleEditClick = () => {
+        if (!isOnEdit) {
+            dispatch(setEditMode({ id, taskField, priority, completed }));
+        }
+    }
+    
     const handleTaskDelete = ()=>{
-        dispatch(deleteTask({ id }));
-        showAndHideToast('delete', 'Task removed!');
+        if (!isOnEdit) {
+            dispatch(deleteTask({ id }));
+            showAndHideToast('delete', 'Task removed!');
+        }
     }
 
     const taskComponent = (
@@ -53,8 +64,8 @@ function TodoTask() {
                 } color={checkColor} onChange={handleCheckedTask} checked={completed} className='cursor-pointer' />
             </div>
             <div className="self-end justify-self-end flex justify-between items-center gap-3 cursor-pointer">
-                <Pencil onClick={()=>dispatch(setEditMode({ id, taskField, priority, completed}))} size={18} />
-                <Trash2 onClick={handleTaskDelete} size={18} />
+                <Pencil onClick={handleEditClick} size={18} style={{ pointerEvents: isOnEdit ? 'none' : 'auto', opacity: isOnEdit ? 0.5 : 1 }}  />
+                <Trash2 onClick={handleTaskDelete} size={18} style={{ pointerEvents: isOnEdit ? 'none' : 'auto', opacity: isOnEdit ? 0.5 : 1 }} />
             </div>
         </div>
     );
