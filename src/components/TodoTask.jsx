@@ -43,7 +43,7 @@ function TodoTask() {
             dispatch(setEditMode({ id, taskField, priority, completed }));
         }
         else {
-            showAndHideToast('invalid',"Dude, You're on edit mode click save/cancel to continue!")
+            showAndHideToast('invalid',"Hey, you're in edit mode! Click 'Save'/'Cancel' to proceed.")
         }
     }
     
@@ -53,7 +53,7 @@ function TodoTask() {
             showAndHideToast('delete', 'Task removed!');
         }
         else {
-            showAndHideToast('invalid',"Oops!!, Can't perform delete while on edit mode!")
+            showAndHideToast('invalid',"Oops!!, Can't perform delete while in edit mode!")
         }
     }
 
