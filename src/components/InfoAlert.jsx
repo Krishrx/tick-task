@@ -1,4 +1,5 @@
-import {Info} from 'lucide-react'
+import { Info } from 'lucide-react'
+import React from 'react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,14 +19,19 @@ function InfoAlert() {
             <AlertDialogTrigger><Info className='text-accent cursor-pointer' /></AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogTitle><span className='font-poppins text-xl text-text'>Welcome To Tick <span className='text-primary'>Task</span>!</span></AlertDialogTitle>
                 <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete your account
-                    and remove your data from our servers.
+                    <ul className='font-poppins flex flex-col px-3 list-disc justify-start items-start text-text '>
+                        <li className='list-none text-lg font-semibold text-text'>Quick Tips</li>
+                        <li>Priority field is optional.</li>
+                        <li>By default all task priorities are set to High.</li>
+                        <li>You can also press <q>Enter</q> key to add/edit task.</li>
+
+                    </ul>
                 </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                <AlertDialogAction>Okay!</AlertDialogAction>
+                <AlertDialogAction><span className='font-poppins'>Letzz Go!</span></AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
@@ -34,4 +40,4 @@ function InfoAlert() {
   )
 }
 
-export default InfoAlert
+export default React.memo(InfoAlert);

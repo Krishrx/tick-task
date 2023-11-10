@@ -133,7 +133,7 @@ function TaskFields() {
           
           <div className='px-2 py-4'>
             {onEdit?(<div className='flex gap-4'>
-              <Button type='submit' ripple={true} color="deep-purple" variant="filled">Save</Button>
+              <Button type='submit' ripple={true} color="deep-purple" variant="filled">&nbsp;Save&nbsp;</Button>
               <Button onClick={handleCancel} type='button' ripple={true} color="blue-gray" variant="filled">Cancel</Button>
             </div>):(<Button type='submit' ripple={true} color="deep-purple" variant="filled">Add</Button>)}
           </div>

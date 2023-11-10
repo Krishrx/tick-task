@@ -78,7 +78,7 @@ function TodoTask() {
                 {open?<ChevronUp size={20} />:<ChevronDown size={20} />}
             </div>
             <div className="w-8/12 md:w-4/12">
-                <Collapse open={open} className='space-y-6'>
+                <Collapse open={open} className={`space-y-6 ${open?'pb-4':''}`}>
                     {modifiedArr.complete}
                 </Collapse>
             </div>
