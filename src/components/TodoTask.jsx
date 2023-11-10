@@ -67,7 +67,7 @@ function TodoTask() {
                             {taskField}
                         </Typography>
                     </div>
-                } color={checkColor} onChange={handleCheckedTask} checked={completed} className='cursor-pointer' />
+                } color={checkColor} onChange={handleCheckedTask} checked={completed} className='cursor-pointer border-text' />
             </div>
             <div className="self-end justify-self-end flex justify-between items-center gap-3 cursor-pointer">
                 <Pencil onClick={handleEditClick} size={18} style={{ opacity: isOnEdit ? 0.5 : 1 }}  />
