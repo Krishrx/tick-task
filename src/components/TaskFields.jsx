@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { taskAdd,editTask,getBack } from '../redux/taskSlice';
 import { handleToast, clearToast } from '../redux/toastSlice';
 import { nanoid } from '@reduxjs/toolkit';
-import {Info} from 'lucide-react'
+import InfoAlert from './InfoAlert';
 
 function TaskFields() {
     const [taskFields, setTaskFields] = useState({
@@ -111,7 +111,7 @@ function TaskFields() {
           <input type="text" name='taskField' id='taskField' value={taskFields.taskField} className='bg-purple-50 w-8/12 rounded-md border-2 border-secondary focus:outline-primary  px-4 py-2 md:w-4/12 shadow-sm' onChange={handleChange} placeholder='Learn Coding @ 7pm' autoComplete="off"/>
           
           {/* Priority section */}
-          <div className='w-8/12 flex justify-evenly items-center md:w-4/12 space-y-4'>
+          <div className='w-8/12 flex justify-evenly items-center md:w-4/12  pt-10'>
               <h1 className='font-semibold'>Priority</h1>
               
             <div className='flex flex-col md:flex-row'>           
@@ -127,8 +127,8 @@ function TaskFields() {
             </div>
           </div>
           
-          <div className='w-8/12 px-4 py-2 md:w-4/12 '>
-            <Info className='text-accent cursor-pointer'/>
+          <div className='w-8/12 px-2 py-2 md:w-4/12 md:pt-5 '>
+            <InfoAlert/>
           </div>
           
           <div className='px-2 py-4'>
