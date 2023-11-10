@@ -5,10 +5,10 @@ import { useSelector } from "react-redux"
 import TodoTask from "./components/TodoTask";
 import Footer from "./components/Footer";
 function App() {
-  const {showToast,typeOfToast,messageOnToast} = useSelector(state => state.toast);
+  const { showToast, typeOfToast, messageOnToast,isDark } = useSelector(state => state.toast);
   return (
       <>
-      <div className="bg-background text-text font-poppins w-full min-h-screen max-h-full">
+      <div className={`font-poppins w-full min-h-screen max-h-full ${isDark?'bg-darkBackground text-darkText':'bg-background text-text '}`}>
       <Header />
       <Notification showToast={showToast} typeOfToast={typeOfToast} messageOnToast={messageOnToast}/>
       <TaskFields />

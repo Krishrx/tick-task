@@ -10,6 +10,7 @@ function TodoTask() {
     //const taskCount = useSelector((state) => state.task.tasksCount);
     const toDoArray = useSelector((state) => state.task.tasks);
     const isOnEdit = useSelector((state) => state.task.onEdit);
+    const isDark = useSelector((state) => state.toast.isDark);
     const dispatch = useDispatch();
 
     const [open, setOpen] = useState(false);
@@ -69,7 +70,7 @@ function TodoTask() {
                     </div>
                 } color={checkColor} onChange={handleCheckedTask} checked={completed} className='cursor-pointer border-text' />
             </div>
-            <div className="self-end justify-self-end flex justify-between items-center gap-3 cursor-pointer">
+            <div className="self-end justify-self-end flex justify-between items-center gap-3 cursor-pointer text-text">
                 <Pencil onClick={handleEditClick} size={18} style={{ opacity: isOnEdit ? 0.5 : 1 }}  />
                 <Trash2 onClick={handleTaskDelete} size={18} style={{ opacity: isOnEdit ? 0.5 : 1 }} />
             </div>
