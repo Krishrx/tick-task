@@ -19,7 +19,7 @@ function InfoAlert() {
             <AlertDialogTrigger><Info className='text-accent cursor-pointer' /></AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                <AlertDialogTitle><span className='font-poppins text-xl text-text'>Welcome To Tick <span className='text-primary'>Task</span>!</span></AlertDialogTitle>
+                <AlertDialogTitle><span className='font-poppins text-xl text-text'>Welcome to Tick <span className='text-primary'>Task</span>!</span></AlertDialogTitle>
                 <AlertDialogDescription>
                     <ul className='font-poppins flex flex-col px-3 list-disc justify-start items-start text-text '>
                         <li className='list-none text-lg font-semibold text-text'>Quick Tips</li>

@@ -7,13 +7,15 @@ import Footer from "./components/Footer";
 function App() {
   const {showToast,typeOfToast,messageOnToast} = useSelector(state => state.toast);
   return (
+      <>
       <div className="bg-background text-text font-poppins w-full min-h-screen max-h-full">
       <Header />
       <Notification showToast={showToast} typeOfToast={typeOfToast} messageOnToast={messageOnToast}/>
       <TaskFields />
       <TodoTask />
-      <Footer/>
       </div>
+      <Footer/>
+    </>
   )
 }
 
