@@ -87,7 +87,7 @@ function TodoTask() {
     <>
     {modifiedArr.incomplete.length===0?(<section className="px-2 py-4 w-full flex justify-center items-center flex-wrap flex-col space-y-4 md:flex-row md:space-y-0">
         <h1 className='font-medium text-xl py-4 md:py-0'>Woohoo!! Done for today!</h1>
-        <img src="../../public/completed svg.svg" alt="completed svg" className='h-48 mr-8 md:mr-0' />
+        <img src="./completed svg.svg" alt="completed svg" className='h-48 mr-8 md:mr-0' />
     </section>)
     :(<section className="px-2 py-4 w-full space-y-4 flex flex-col justify-center items-center">
         <div className="w-8/12 md:w-4/12 space-y-6">
