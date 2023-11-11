@@ -117,13 +117,13 @@ function TaskFields() {
               
             <div className='flex flex-col md:flex-row'>           
               <Radio name="priority" value="High" id="High" checked={taskFields.priority === "High"} onChange={handleChange} ripple={true} color='red' className={`p-0 transition-all hover:before:opacity-0 ${isDark?'border-gray-500 bg-gray-50':'border-gray-900/10 bg-gray-900/5'}`} label={<Typography
-               className="font-normal">High</Typography>}/>
+               className={`font-normal ${isDark?'text-darkText':'text-text'}`}>High</Typography>}/>
               
               <Radio name="priority" value="Moderate" id="Moderate" checked={taskFields.priority === "Moderate"} onChange={handleChange} ripple={true} color='amber'  className={`p-0 transition-all hover:before:opacity-0 ${isDark?'border-gray-500 bg-gray-50':'border-gray-900/10 bg-gray-900/5'}`} label={<Typography
-              className="font-normal">Moderate</Typography>}/>
+              className={`font-normal ${isDark?'text-darkText':'text-text'}`}>Moderate</Typography>}/>
               
               <Radio name="priority" value="Low" id="Low" checked={taskFields.priority === "Low"} onChange={handleChange} ripple={true} color='green'  className={`p-0 transition-all hover:before:opacity-0 ${isDark?'border-gray-500 bg-gray-50':'border-gray-900/10 bg-gray-900/5'}`} label={<Typography
-               className="font-normal ">Low</Typography>}/>
+               className={`font-normal ${isDark?'text-darkText':'text-text'}`}>Low</Typography>}/>
 
             </div>
           </div>
