@@ -11,7 +11,7 @@ function Header() {
   return (
     <header className="flex flex-col justify-center items-center px-2 py-4">
           <h1></h1>
-          <h1 className="font-bold text-4xl">Tick <span className={`${isDark?'text-darkPrimary':'text-primary'}`}>Task</span></h1>
+          <h1 className="font-bold text-4xl cursor-pointer"><a href="https://tick-task-krishrx.vercel.app/">Tick <span className={`${isDark?'text-darkPrimary':'text-primary'}`}>Task</span></a></h1>
           <Tooltip
             content="Dark/Light Theme"
             animate={{
