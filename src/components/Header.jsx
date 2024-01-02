@@ -13,7 +13,7 @@ function Header() {
           <h1></h1>
           <h1 className="font-bold text-4xl cursor-pointer"><a href="https://tick-task-krishrx.vercel.app/">Tick <span className={`${isDark?'text-darkPrimary':'text-primary'}`}>Task</span></a></h1>
           <Tooltip
-            content="Dark/Light Theme"
+            content={`${isDark?'Light':'Dark'} Theme`}
             animate={{
               mount: { scale: 1, y: 0 },
               unmount: { scale: 0, y: 25 },
